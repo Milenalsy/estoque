@@ -1,23 +1,20 @@
 <?php
 require_once "../config.php";
 global $db;
-$categoria= array();
-if(isset($_GET['id'])){
-    $id = $GET['id'];
-    $sql = "SELECT * FROM categoria WHERE id = :id";
+$categoria= $_POST['nome'];
+$id = $_POST['id'];
+
+
+    $sql = "UPDATE categoria SET nome = :categoria WHERE id = :id";
     $sql = $db->prepare($sql);
-    $sql->bindValue(":id,$id");
+    $sql->bindValue(":categoria",$categoria);
+    $sql->bindValue(":id",$id);
     $sql->execute();
 
-    if($sql->rowCount()>0){
-        $categoria = $sql->fetch();
-    }else{
-        header("lacation: ../nova-categoria.php");
+    
+        header("lacation:editar.php");
         exit;
-    }
 
-
-}
 ?>
 
 <!DOCTYPE html>
@@ -40,9 +37,10 @@ if(isset($_GET['id'])){
     <div class="container">
         <fieldset>
             <legend>EDITAR CATEGORIA</legend>
-            <form method="POST" action="">
+            <form method="POST" action="salvar.php">
                 <label for="">NOME DA CATEGORIA</label>
-                <input type="text" name="nome" class="form-control"/><br>
+                <input type="text" name="nome" class="form-control" value="<?php echo $categoria['nome']?>" /><br>
+                <input type="" name="nome" class="form-control" value="<?php echo $categoria['id']?>" /><br>
                 <button class="btn btn-success">Salvar</button>
             </form>
         </fieldset>
