@@ -17,7 +17,7 @@ $sql->execute();
 print_r($sql->errorInfo());exit;
 
 if($sql){
-    header("Location: index.php");
+    header("Location: estoque/produtos/listar.php");
 }
 }
 ?>
@@ -47,7 +47,7 @@ if($sql){
         <label>Id_categoria</label>
         <input type="text" class="form-control" name="id_categoria"/>
         <label>Data_entrada</label>
-        <input type="date" class="form-control"/>
+        <input type="date" class="form-control" name="data_entrada"/>
         <label>Data_validade</label>
         <input type="date" class="form-control"/>
         <br/><button><a href="index.php" class="btn btn-warning">Voltar</a><button>

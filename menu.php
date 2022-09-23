@@ -1,4 +1,4 @@
-<?php require_once "config.php"?>
+<?php require_once "config.php";?>
 <div class="fundo-menu">
             <a href="<?php echo $url ?>novo_produto.php">
                 <div class="botao-menu">
@@ -22,5 +22,12 @@
                 <img src="<?php echo $url ?>imagens/pontuacoes.png" alt="" srcset=""/>
                     
                 </div>     
+            </a>
+            <a href="<?php echo $url ?>produtos/listar.php">
+                <div class="botao-menu">
+                <img src="<?php echo $url ?>imagens/101-8.jpg" alt="" srcset=""/>
+                    
+
+                </div>
             </a>
 </div>

@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(144, 65, 155);
+    background-color: rgb(169, 90, 179);
     padding: 30px;
 }
 .fundo{
@@ -25,7 +25,7 @@ a{
 .botao-menu{
     width: 100px;
     height: 60px;
-    background-color: rgb(122, 58, 154);
+    background-color: rgb(103, 23, 143);
     color: #fff;
     display: flex;
     justify-content: center;
