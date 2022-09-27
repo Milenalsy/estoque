@@ -4,6 +4,7 @@ require_once "../config.php";
 $id = $_GET['id'];
 $produtos = array();
 
+
 $sql = "SELECT * FROM produtos WHERE id = :id";
 $sql = $db->prepare($sql);
 $sql->bindValue(":id",$id);
@@ -11,24 +12,25 @@ $sql->execute();
 $produtos = $sql->fetch();
 
 
-if(count($_POST)> 0){
+if(isset($_POST['nome'])){
 $nome = $_POST['nome'];
 $id_categoria = $_POST['id_categoria'];
-$data_entrada = $_POST['data_entrada'];
+$quantidade = $_POST['quantidade'];
 $data_validade = $_POST['data_validade'];
 
-$sql ="INSERT INTO produtos SET nome = :nome, id_categoria = :id_categoria, data_entrada = :data_entrada, data_validade = :data_validade = NOW()";
+$sql ="UPDATE produtos SET nome = :nome, id_categoria = :id_categoria, quantidade = :quantidade, data_validade = :data_validade WHERE id = :id";
 $sql= $db->prepare($sql);
 $sql->bindValue(":nome",$nome);
 $sql->bindValue(":id_categoria",$id_categoria);
-$sql->bindValue(":data_entrada",$data_entrada);
+$sql->bindValue(":quantidade",$quantidade);
 $sql->bindValue(":data_validade",$data_validade);
+$sql->bindValue(":id",$id);
 $sql->execute();
 //print_r($sql->errorInfo());exit;
 
-if($sql){
-    header("Location: estoque/produtos/listar.php");
-}
+
+    header("Location: listar.php");
+
 }
 $categorias = array();
 $sql = "SELECT * FROM categorias";
@@ -76,8 +78,8 @@ $categorias = $sql->fetchAll();
             <?php endforeach; ?>
 
         </select>
-        <label>Data_entrada</label>
-        <input type="date" class="form-control" name="data_entrada" value=""/>
+        <label>Quantidade</label>
+        <input type="number" class="form-control" name="quantidade" value=""/>
         <label>Data_validade</label>
         <input type="date" class="form-control" name="data_validade" value=""/>
 
