@@ -26,7 +26,6 @@ $sql->bindValue(":quantidade",$quantidade);
 $sql->bindValue(":data_validade",$data_validade);
 $sql->bindValue(":id",$id);
 $sql->execute();
-//print_r($sql->errorInfo());exit;
 
 
     header("Location: listar.php");

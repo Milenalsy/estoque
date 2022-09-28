@@ -2,8 +2,8 @@
 require_once "../config.php";
     $produtos = array();
     global $db;
-
-    $sql="SELECT * FROM produtos";
+   
+    $sql="SELECT produtos.id,produtos.nome,produtos.data_validade, produtos.quantidade, categorias.nome AS nome_categoria FROM produtos INNER JOIN categorias ON produtos.id_categoria = categorias.id ";
     $sql =$db->prepare($sql);
     $sql->execute();
 
@@ -38,6 +38,7 @@ require_once "../config.php";
                     <thead>
                         <th>ID</th>
                         <th>Nome</th>
+                        <th>Categoria</th>
                         <th>Data de Validade</th>
                         <th>Quantidade</th>
                         <th>Opções</th>
@@ -46,12 +47,15 @@ require_once "../config.php";
                     <tbody>
                         <?php foreach($produtos as $produtos):?>
                             <tr>
+
                                 <td><?php echo $produtos['id']?></td>
                                 <td><?php echo $produtos['nome']?></td>
+                                <td><?php echo $produtos['nome_categoria']?></td>
                                 <td><?php echo $produtos['data_validade']?></td>
                                 <td><?php echo $produtos['quantidade']?></td>
+                                
                         
-                                <td><a href="./editar.php?id=<?php echo $produtos['id']?>" class="btn btn-warning">Editar</td>
+                        </br><td><a href="./editar.php?id=<?php echo $produtos['id']?>" class="btn btn-warning">Editar</td>
 
                             </tr>
                             <?php endforeach?>
